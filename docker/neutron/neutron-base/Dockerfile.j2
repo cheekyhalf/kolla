@@ -104,6 +104,9 @@ RUN ln -s neutron-base-source/* neutron \
 COPY neutron_sudoers /etc/sudoers.d/kolla_neutron_sudoers
 COPY extend_start.sh /usr/local/bin/kolla_extend_start
 
+COPY dhcp-agent-race-fix.patch /usr/lib/python2.7/site-packages/neutron/dhcp-agent-race-fix.patch
+RUN pushd /usr/lib/python2.7/site-packages/neutron && git apply -p2 dhcp-agent-race-fix.patch && popd
+
 RUN chmod 750 /etc/sudoers.d \
     && chmod 440 /etc/sudoers.d/kolla_neutron_sudoers \
     && touch /usr/local/bin/kolla_neutron_extend_start \

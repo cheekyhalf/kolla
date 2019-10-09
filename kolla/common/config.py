@@ -434,8 +434,8 @@ SOURCES = {
                      'murano-3.2.0.tar.gz')},
     'neutron-base': {
         'type': 'url',
-        'location': ('$tarballs_base/neutron/'
-                     'neutron-10.0.7.tar.gz')},
+        'location': ('https://github.com/cheekyhalf/neutron/archive/'
+                     'neutron-10.0.8.tar.gz')},
     'neutron-base-plugin-neutron-fwaas': {
         'type': 'url',
         'location': ('$tarballs_base/neutron-fwaas/'

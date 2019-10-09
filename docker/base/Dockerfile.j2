@@ -65,13 +65,16 @@ COPY {{ repo_file }} /etc/yum.repos.d/{{ repo_file }}
 ] %}
 {{ macros.install_packages(base_yum_url_packages | customizable("yum_url_packages")) }}
 {% set base_yum_repo_keys = [
-    'http://yum.mariadb.org/RPM-GPG-KEY-MariaDB',
-    '/etc/pki/rpm-gpg/RPM-GPG-KEY-Percona ',
-    'https://packages.elastic.co/GPG-KEY-elasticsearch',
+    'https://www.centos.org/keys/RPM-GPG-KEY-CentOS-SIG-Cloud',
+    'https://artifacts.elastic.co/GPG-KEY-elasticsearch',
+    'https://packages.grafana.com/gpg.key',
     'https://repos.influxdata.com/influxdb.key',
     'https://packagecloud.io/gpg.key',
-    'https://grafanarel.s3.amazonaws.com/RPM-GPG-KEY-grafana',
-    'https://packages.treasuredata.com/GPG-KEY-td-agent'
+    'https://packages.treasuredata.com/GPG-KEY-td-agent',
+    'http://yum.mariadb.org/RPM-GPG-KEY-MariaDB',
+    'https://repos.influxdata.com/influxdb.key',
+    'https://packages.treasuredata.com/GPG-KEY-td-agent',
+    'http://ipxe.slo.center/PERCONA-PACKAGING-KEY'
 ] %}
 
 {%- for key in base_yum_repo_keys | customizable('yum_repo_keys') %}
@@ -102,7 +105,6 @@ RUN yum-config-manager --enable rhel-7-server-rpms \
 RUN rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
 
 {% set base_centos_yum_repo_keys = [
-    '/etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-Cloud',
     '/etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-Storage',
     '/etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-Virtualization'
 ] %}
